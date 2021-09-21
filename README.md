@@ -1,2 +1,2 @@
 # wptheme-chiconi
-wordpress theme for a shop
+wordpress theme for a chiconi ecommerce
