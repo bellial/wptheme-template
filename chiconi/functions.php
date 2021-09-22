@@ -1,3 +1,4 @@
+ 
 <?php
 /**
  * chiconi functions and definitions
@@ -166,7 +167,6 @@ add_action( 'admin_bar_menu', 'remove_logo_toolbar', 999 );
 # ---------------------------------------------------------------------------------
 /*
 $location_path = get_template_directory_uri();
-
 function my_custom_login_logo() {
 	global $location_path;
 	echo '<style type="text/css">
@@ -209,11 +209,188 @@ function chiconi_custom_logo_setup() {
  *}
  */ 
 }
-
-
 add_action( 'after_setup_theme', 'chiconi_custom_logo_setup' );
 
+# Checks if there are any posts in the results
+# ---------------------------------------------------------------------------------
+function is_search_has_results() {
+	return 0 != $GLOBALS['wp_query']->found_posts;
+}
 
+# Remove css inline - recentcoments
+# ---------------------------------------------------------------------------------
+function remove_recent_comments_style() {
+	global $wp_widget_factory;
+	remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
+}
 
+# Função para criar o menu
+# ---------------------------------------------------------------------------------
+function default_theme_nav($menu_location, $menu_class, $menu_id) {
+	wp_nav_menu(
+		array(
+		'theme_location'  => $menu_location,
+		'menu'            => '',
+		'container'       => 'nav',
+		'container_class' => $menu_class,
+		'container_id'    => $menu_id,
+		'menu_class'      => 'nav',
+		'menu_id'         => '',
+		'echo'            => true,
+		'fallback_cb'     => 'wp_page_menu',
+		'before'          => '',
+		'after'           => '',
+		'link_before'     => '',
+		'link_after'      => '',
+		'items_wrap'      => '<ul>%3$s</ul>',
+		'depth'           => 0,
+		'walker'          => ''
+		)
+	);
+}
+
+// Customize login header text.
+add_filter( 'login_headertext', 'wpdoc_customize_login_headertext' );
+
+function wpdoc_customize_login_headertext( $headertext ) {
+    $headertext = esc_html__( 'Welcome to WordPress', 'plugin-textdomain' );
+    return $headertext;
+}
+
+/*
+* Remove JSON API links in header html
+*/
+function remove_json_api () {
+
+    // Remove the REST API lines from the HTML Header
+    remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+    remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
+
+    // Remove the REST API endpoint.
+    remove_action( 'rest_api_init', 'wp_oembed_register_route' );
+
+    // Turn off oEmbed auto discovery.
+    add_filter( 'embed_oembed_discover', '__return_false' );
+
+    // Don't filter oEmbed results.
+    remove_filter( 'oembed_dataparse', 'wp_filter_oembed_result', 10 );
+
+    // Remove oEmbed discovery links.
+    remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+
+    // Remove oEmbed-specific JavaScript from the front-end and back-end.
+    remove_action( 'wp_head', 'wp_oembed_add_host_js' );
+
+   // Remove all embeds rewrite rules.
+   add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' );
+
+}
+add_action( 'after_setup_theme', 'remove_json_api' );
+
+/*
+	Snippet completely disable the REST API and shows {"code":"rest_disabled","message":"The REST API is disabled on this site."} 
+	when visiting http://yoursite.com/wp-json/
+*/
+function disable_json_api () {
+
+    // Filters for WP-API version 1.x
+    add_filter('json_enabled', '__return_false');
+    add_filter('json_jsonp_enabled', '__return_false');
+  
+    // Filters for WP-API version 2.x
+    add_filter('rest_enabled', '__return_false');
+    add_filter('rest_jsonp_enabled', '__return_false');
+  
+  }
+  add_action( 'after_setup_theme', 'disable_json_api' );
+
+/**
+ * Enqueue scripts and styles. (do it properly, create assets folders and whatnot)
+ */
+function chiconi_scripts() {
+	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/lbn0rhh.css' ); //get correct typekit link
+	wp_enqueue_style( 'chiconi-style', get_stylesheet_uri(), array(), _S_VERSION );
+	
+	// script
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'carousel', get_template_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'maskedinput', get_template_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
+	
+	wp_enqueue_script( 'script-main', get_template_directory_uri() . '/assets/js/min/build.min.js?version=1.3', array(), '20151215', true );
+}
+add_action( 'wp_enqueue_scripts', 'chiconi_scripts' );
+
+/**
+ * take a look at the paths and files below to understand better what they do
+ */
+/**
+ * CPT
+ *
+*require get_template_directory() . '/cpt/acf.php';
+*/
+/**
+ * Woocommerce
+ *
+*require get_template_directory() . '/inc/woocommerce.php';
+*/
+/**
+ * Implement the Custom Header feature.
+ *
+*require get_template_directory() . '/inc/custom-header.php';
+*/
+/**
+ * Custom template tags for this theme.
+ *
+*require get_template_directory() . '/inc/template-tags.php';
+*/
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ *
+*require get_template_directory() . '/inc/template-functions.php';
+*/
+/**
+ * Customizer additions.
+ *
+*require get_template_directory() . '/inc/customizer.php';
+*/
+
+/**
+ * Continuar Comprando para loja
+ */
+
+add_filter( 'woocommerce_continue_shopping_redirect', 'zb_change_continue_shopping' );
+
+function zb_change_continue_shopping() {
+return "https://erikachiconisemijoias.com.br/loja/";
+}
+
+/*woocommerce cart icon */
+/**
+ * Ensure cart contents update when products are added to the cart via AJAX
+ *
+
+* function my_header_add_to_cart_fragment( $fragments ) {
+ 
+* 	ob_start();
+
+* 	$cart_url =  WC()->cart->get_cart_url();
+* 	$cart_contents_count = WC()->cart->cart_contents_count;
+* 	$cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'Carrinho'), $cart_contents_count);
+* 	$cart_total = WC()->cart->get_cart_total();
+
+* 	?><a class="fs-cart-contents" href="<?php echo $cart_url; ?>" title="Carrinho"><i class="fa fa-shopping-cart"></i><?php
+* 	if ( $cart_contents_count > 0 ) {
+* 	?>
+* 		<span class="cart-quantity"><?php echo $cart_contents_count; ?></span> <span class="cart-total"><?php echo $cart_total; ?></span>
+* 		<?php            
+* 	}
+* 	?></a><?php
+ 
+* 	$fragments['a.fs-cart-contents'] = ob_get_clean();
+     
+* 	return $fragments;
+* }
+* add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+*/
 
 
