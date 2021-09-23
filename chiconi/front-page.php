@@ -1,8 +1,15 @@
-<?php 
-	/**
-	 * Template Name: Home
-	 */
-	get_header(); 
+<?php
+/**
+ * The front page template file.
+ *
+ * If the user has selected a static page for their homepage, this is what will
+ * appear.
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package chiconi
+ */
+
+get_header(); 
 ?>
 
 <main id="primary" class="site-main page-main">
@@ -176,3 +183,4 @@
 
 <?php
 get_footer();
+?>

@@ -217,13 +217,6 @@ function is_search_has_results() {
 	return 0 != $GLOBALS['wp_query']->found_posts;
 }
 
-# Remove css inline - recentcoments
-# ---------------------------------------------------------------------------------
-function remove_recent_comments_style() {
-	global $wp_widget_factory;
-	remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
-}
-
 # Função para criar o menu
 # ---------------------------------------------------------------------------------
 function default_theme_nav($menu_location, $menu_class, $menu_id) {
@@ -308,7 +301,7 @@ function disable_json_api () {
  * Enqueue scripts and styles. (do it properly, create assets folders and whatnot)
  */
 function chiconi_scripts() {
-	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/lbn0rhh.css' ); //get correct typekit link
+	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/uqw4hoo.css' ); 
 	wp_enqueue_style( 'chiconi-style', get_stylesheet_uri(), array(), _S_VERSION );
 	
 	// script
