@@ -1,7 +1,7 @@
 <footer id="colophon" class="site-footer">
 		<div class="site-info">
 			<div class="container">
-        <p class="logo text-center"><!--a logo fica aside, ajeitar os PATHS
+        <p class="logo text-center"><!--a logo fica aside, ajeitar os PATHS-->
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-ono-footer.png" alt="Chiconi" class="img-fluid">
         </p>
         <div class="row">
@@ -10,7 +10,7 @@
               <h4>Menu</h4>
               <?php
                 // Menu principal
-                default_theme_nav('principal', 'nav-main-footer', 'menu-main');
+                default_theme_nav('footer', 'nav-main-footer', 'menu-main');
               ?>
             </div>
           </div>
@@ -25,7 +25,7 @@
           <div class="col-md-3">
             <div class="itemFooter">
               <h4>Whatsapp</h4>
-              //call o numero do zap
+              <!--call o numero do zap-->
             </div>
           </div>
 
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-	</footer>-->
+	</footer>
                 
 
 <?php wp_footer(); ?>

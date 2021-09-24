@@ -41,8 +41,8 @@ if ( ! function_exists( 'chiconi_setup' ) ) :
      * Add support for custom navigation menus.
      */
     register_nav_menus( array(
-        'primary'   => __( 'Primary Menu', 'chiconi' ),
-        'secondary' => __('Secondary Menu', 'chiconi' )
+        'header'   => esc_html__('Display this menu in Header', 'chiconi' ),
+        'footer' => esc_html__('Display this menu in Footer', 'chiconi' ),
     ) );
     /**
      * Enable support for the following post formats:
@@ -52,6 +52,9 @@ if ( ! function_exists( 'chiconi_setup' ) ) :
 
     // Adds <title> tag support
     add_theme_support( 'title-tag' );
+
+    // Add custom-logo support
+    add_theme_support( 'custom-logo' );
 
     /*
 	* Switch default core markup for search form, comment form, and comments
@@ -78,12 +81,6 @@ if ( ! function_exists( 'chiconi_setup' ) ) :
      *  );
      *add_theme_support( 'custom-background', $defaults );
     */
- 
-    // This feature enables Selective Refresh for Widgets being managed within the Customizer.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-	
-
-
     }
 
     remove_action('wp_head', 'rsd_link'); // remove really simple discovery link
@@ -186,27 +183,6 @@ function remove_recent_comments_style() {
 }
 add_action( 'widgets_init', 'remove_recent_comments_style' );
 
-//Adding Custom Logo support to your Theme
-function chiconi_custom_logo_setup() {
-    $defaults = array(
-        'height'               => 100,
-        'width'                => 400,
-        'flex-height'          => true,
-        'flex-width'           => true,
-        'header-text'          => array( 'site-title', 'site-description' ),
-        'unlink-homepage-logo' => true, 
-    );
- 
-    add_theme_support( 'custom-logo', $defaults );
-/**
- * Displaying the custom logo in your theme 
- * if ( function_exists( 'the_custom_logo' ) ) {
- *  the_custom_logo();
- *}
- */ 
-}
-add_action( 'after_setup_theme', 'chiconi_custom_logo_setup' );
-
 # Checks if there are any posts in the results
 # ---------------------------------------------------------------------------------
 function is_search_has_results() {
@@ -300,6 +276,7 @@ function chiconi_scripts() {
 	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/uqw4hoo.css' ); 
     wp_enqueue_style( 'normalize',  get_stylesheet_directory_uri() . '/assets/css/normalize.css', array(), false, 'all' );
     wp_enqueue_style( 'bootstrap-style', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), false, 'all' );
+    wp_enqueue_style( 'superfish', get_stylesheet_directory_uri() . '/assets/css/superfish.css', array(), false, 'all' );
 	wp_enqueue_style( 'chiconi-stylesheet', get_stylesheet_uri(), array('normalize','bootstrap'), '_S_VERSION', 'all' );
 
 	
@@ -307,44 +284,39 @@ function chiconi_scripts() {
 	//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
 	//wp_enqueue_script( 'carousel', get_template_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
 	//wp_enqueue_script( 'maskedinput', get_template_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
-	
+	wp_enqueue_script( 'superfish', get_stylesheet_directory_uri() . '/assets/js/superfish.js', array('jquery'), '1.0.0', true );
 	wp_enqueue_script( 'chiconi-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
 }
 add_action( 'wp_enqueue_scripts', 'chiconi_scripts' );
 
 /**
- * take a look at the paths and files below to understand better what they do
+ * Register widget area.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-/**
- * CPT
- *
-*require get_template_directory() . '/cpt/acf.php';
-*/
-/**
- * Woocommerce
- *
-*require get_template_directory() . '/inc/woocommerce.php';
-*/
-/**
- * Implement the Custom Header feature.
- *
-*require get_template_directory() . '/inc/custom-header.php';
-*/
-/**
- * Custom template tags for this theme.
- *
-*require get_template_directory() . '/inc/template-tags.php';
-*/
-/**
- * Functions which enhance the theme by hooking into WordPress.
- *
-*require get_template_directory() . '/inc/template-functions.php';
-*/
-/**
- * Customizer additions.
- *
-*require get_template_directory() . '/inc/customizer.php';
-*/
+function chiconi_register_sidebars() {
+	
+    register_sidebar( array(
+         'name'          => esc_html__( 'Footer Section One', 'chiconi' ),
+         'id'            => 'footer-section-one',
+         'description'   => esc_html__( 'Widgets added here would appear inside the first section of the footer', 'chiconi' ),
+         'before_widget' => '',
+         'after_widget'  => '',
+         'before_title'  => '',
+         'after_title'   => '',
+     ) );
+     
+     register_sidebar( array(
+         'name'          => esc_html__( 'Footer Section Two', 'chiconi' ),
+         'id'            => 'footer-section-two',
+         'description'   => esc_html__( 'Widgets added here would appear inside the second section of the footer', 'chiconi' ),
+         'before_widget' => '',
+         'after_widget'  => '',
+         'before_title'  => '',
+         'after_title'   => '',
+     ) );
+ }
+ add_action( 'widgets_init', 'chiconi_register_sidebars' );	
 
 /**
  * Continuar Comprando para loja
