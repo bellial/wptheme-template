@@ -50,10 +50,7 @@ if ( ! function_exists( 'chiconi_setup' ) ) :
      */
     add_theme_support( 'post-formats', array ( 'aside', 'gallery', 'quote', 'image', 'video' ) );
 
-    /**
-     * This feature enables plugins and themes to manage the document title tag. 
-     * This should be used in place of wp_title() function. 
-     */
+    // Adds <title> tag support
     add_theme_support( 'title-tag' );
 
     /*
