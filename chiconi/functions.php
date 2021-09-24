@@ -1,4 +1,3 @@
- 
 <?php
 /**
  * chiconi functions and definitions
@@ -161,7 +160,7 @@ function remove_logo_toolbar( $wp_toolbar ) {
 	global $wp_admin_bar;
 	$wp_toolbar->remove_node( 'wp-logo' );
 }
-add_action( 'admin_bar_menu', 'remove_logo_toolbar', 999 );
+add_action( 'admin_bar_menu', 'remove_logo_toolbar');
 
 # Alterando logo do login (add a logo no PATH, depois descomentar)
 # ---------------------------------------------------------------------------------
@@ -298,18 +297,21 @@ function disable_json_api () {
   add_action( 'after_setup_theme', 'disable_json_api' );
 
 /**
- * Enqueue scripts and styles. (do it properly, create assets folders and whatnot)
+ * Enqueue scripts and styles.
  */
 function chiconi_scripts() {
 	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/uqw4hoo.css' ); 
-	wp_enqueue_style( 'chiconi-style', get_stylesheet_uri(), array(), _S_VERSION );
+    wp_enqueue_style( 'normalize',  get_stylesheet_directory_uri() . '/assets/css/normalize.css', array(), false, 'all' );
+    wp_enqueue_style( 'bootstrap-style', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), false, 'all' );
+	wp_enqueue_style( 'chiconi-stylesheet', get_stylesheet_uri(), array('normalize','bootstrap'), '_S_VERSION', 'all' );
+
 	
-	// script
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
-	wp_enqueue_script( 'carousel', get_template_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
-	wp_enqueue_script( 'maskedinput', get_template_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
+	// scripts
+	//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
+	//wp_enqueue_script( 'carousel', get_template_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
+	//wp_enqueue_script( 'maskedinput', get_template_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
 	
-	wp_enqueue_script( 'script-main', get_template_directory_uri() . '/assets/js/min/build.min.js?version=1.3', array(), '20151215', true );
+	wp_enqueue_script( 'chiconi-scripts', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
 }
 add_action( 'wp_enqueue_scripts', 'chiconi_scripts' );
 
@@ -385,5 +387,4 @@ return "https://erikachiconisemijoias.com.br/loja/";
 * }
 * add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
 */
-
 
