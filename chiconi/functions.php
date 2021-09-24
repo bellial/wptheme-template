@@ -311,7 +311,7 @@ function chiconi_scripts() {
 	//wp_enqueue_script( 'carousel', get_template_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
 	//wp_enqueue_script( 'maskedinput', get_template_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
 	
-	wp_enqueue_script( 'chiconi-scripts', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
+	wp_enqueue_script( 'chiconi-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
 }
 add_action( 'wp_enqueue_scripts', 'chiconi_scripts' );
 
