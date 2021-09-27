@@ -41,8 +41,9 @@ if ( ! function_exists( 'chiconi_setup' ) ) :
      * Add support for custom navigation menus.
      */
     register_nav_menus( array(
-        'header'   => esc_html__('Display this menu in Header', 'chiconi' ),
-        'footer' => esc_html__('Display this menu in Footer', 'chiconi' ),
+        //'header' => __('Menu do Header', 'chiconi' ),
+        'main' => __('Menu Principal', 'chiconi' ),
+        'footer' => __('Menu do Rodapé', 'chiconi' ),
     ) );
     /**
      * Enable support for the following post formats:
@@ -194,22 +195,23 @@ function is_search_has_results() {
 function default_theme_nav($menu_location, $menu_class, $menu_id) {
 	wp_nav_menu(
 		array(
-		'theme_location'  => $menu_location,
-		'menu'            => '',
-		'container'       => 'nav',
-		'container_class' => $menu_class,
-		'container_id'    => $menu_id,
-		'menu_class'      => 'nav',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
+		'theme_location'  => $menu_location, // (string) Theme location to be used. Must be registered with register_nav_menu() in order to be selectable by the user.
+		 'menu'            => '', // (int|string|WP_Term) Desired menu. Accepts a menu ID, slug, name, or object.
+		 'container'       => 'div', // (string) Whether to wrap the ul, and what to wrap it with. Default 'div'.
+		 'container_class' => '', // (string) Class that is applied to the container. Default 'menu-{menu slug}-container'.
+		// 'container_id'    => $menu_id, // (string) The ID that is applied to the container.
+		 'menu_class'      => $menu_class, // (string) CSS class to use for the ul element which forms the menu. Default 'menu'.
+		 'menu_id'         => '', // (string) The ID that is applied to the ul element which forms the menu. Default is the menu slug, incremented.
+		 'echo'            => true, // (bool) Whether to echo the menu or return it. Default true.
+		 'fallback_cb'     => 'wp_page_menu', // (callable|bool) If the menu doesn't exists, a callback function will fire. Default is 'wp_page_menu'. Set to false for no fallback.
+		 'before'          => '', // (string) Text before the link markup.
+		 'after'           => '', // (string) Text after the link markup.
+		 'link_before'     => '', // (string) Text before the link text.
+		 'link_after'      => '', // (string) Text after the link text.
+		//'items_wrap'      => '<ul>%3$s</ul>', // (string) How the list items should be wrapped. Default is a ul with an id and class. Uses printf() format with numbered placeholders.
+		'item_spacing'      => 'preserve', // (string) Whether to preserve whitespace within the menu's HTML. Accepts 'preserve' or 'discard'. Default 'preserve'.
+        'depth'           => 0, // (int) How many levels of the hierarchy are to be included. 0 means all. Default 0.
+		 'walker'          => '' // (object) Instance of a custom walker class.
 		)
 	);
 }
@@ -247,7 +249,7 @@ function remove_json_api () {
     remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 
    // Remove all embeds rewrite rules.
-   add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' );
+   //add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' );
 
 }
 add_action( 'after_setup_theme', 'remove_json_api' );
@@ -277,7 +279,8 @@ function chiconi_scripts() {
     wp_enqueue_style( 'normalize',  get_stylesheet_directory_uri() . '/assets/css/normalize.css', array(), false, 'all' );
     wp_enqueue_style( 'bootstrap-style', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), false, 'all' );
     wp_enqueue_style( 'superfish', get_stylesheet_directory_uri() . '/assets/css/superfish.css', array(), false, 'all' );
-	wp_enqueue_style( 'chiconi-stylesheet', get_stylesheet_uri(), array('normalize','bootstrap'), '_S_VERSION', 'all' );
+	wp_enqueue_style( 'chiconi-stylesheet', get_stylesheet_uri());
+   
 
 	
 	// scripts
@@ -300,21 +303,20 @@ function chiconi_register_sidebars() {
          'name'          => esc_html__( 'Footer Section One', 'chiconi' ),
          'id'            => 'footer-section-one',
          'description'   => esc_html__( 'Widgets added here would appear inside the first section of the footer', 'chiconi' ),
-         'before_widget' => '',
-         'after_widget'  => '',
+         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+         'after_widget'  => '</aside>',
          'before_title'  => '',
          'after_title'   => '',
      ) );
-     
      register_sidebar( array(
-         'name'          => esc_html__( 'Footer Section Two', 'chiconi' ),
-         'id'            => 'footer-section-two',
-         'description'   => esc_html__( 'Widgets added here would appear inside the second section of the footer', 'chiconi' ),
-         'before_widget' => '',
-         'after_widget'  => '',
-         'before_title'  => '',
-         'after_title'   => '',
-     ) );
+        'name'          => esc_html__( 'Header Section One', 'chiconi' ),
+        'id'            => 'header-section-one',
+        'description'   => esc_html__( 'Widgets added here would appear inside the first section of the header', 'chiconi' ),
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '',
+        'after_title'   => '',
+    ) );
  }
  add_action( 'widgets_init', 'chiconi_register_sidebars' );	
 

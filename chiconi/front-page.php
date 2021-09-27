@@ -13,33 +13,41 @@ get_header();
 ?>
 
 <main id="primary" class="site-main page-main">
-    <?php if( have_rows('banner_principal') ) : ?>
-      <section class="banner-hero">
-        <div id="carousel-home" class="owl-carousel owl-theme">
-          <?php
-              while( have_rows('banner_principal') ) : 
-                the_row();
-          ?>
-
-<div class="item">
-              <a class="d-block" title="" href="<?php the_sub_field('link_banner'); ?>" class="img-fluid">
-                <img src="<?php the_sub_field('imagem'); ?>" alt="" class="img-fluid d-none d-md-block">
-                <img src="<?php the_sub_field('imagem_mobile'); ?>" alt="" class="img-fluid d-block d-md-none">
-              </a>
-            </div>
-          <?php endwhile; ?>
-        </div>
+  <section class="banner-background">
+    <div class="col-sm-8">
+      <nav class="primary-navigation">
+        <?php
+          // Menu principal
+          default_theme_nav('main', 'menu', 'main-menu');
+        ?>
+      </nav>
+    </div>
+    <?php if( have_rows('banner_carrossel') ) : ?>
+      
+        <section class="banner-hero">
+          <div id="carossel-home" class="container slide_home">
+            <?php
+                while( have_rows('banner_carrossel') ) : the_row();
+            ?>
+              <div>
+                <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
+                <img src="<?php the_sub_field('imagem'); ?>" alt="" class="img-fluid">
+                </a>
+              </div>
+            <?php endwhile; ?>
+          </div>
+        </section>
       </section>
     <?php
       endif;
       wp_reset_query();
     ?>
 
-<section class="section-destaqueProdutos main-woocommerce">
+   <section class="lancamentos main-woocommerce">
       <div class="container">
-        <h2 class="title-destaque">Destaques</h2>
+        <h2 class="title-produtos">Lançamentos</h2>
 
-        <div id="carousel-novidades" class="owl-carousel owl-theme">
+        <div id="carrossel-lancamentos" class="owl-carousel owl-theme">
           <?php 
             $args_banner = array(
               'post_type'      => 'product',
@@ -62,7 +70,7 @@ get_header();
               global $product; 
           ?>
             <div class="item">
-              <div class="itemNovidade">
+              <div class="itemLancamento">
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="d-block text-center">
                   <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="img-fluid">
                 </a>
@@ -81,11 +89,11 @@ get_header();
         </div>
       </div>
     </section>
-    <section class="section-destaqueProdutos main-woocommerce"> <!--igual a anterior porém loja-->
+    <section class="loja main-woocommerce"> <!--igual a anterior porém loja-->
       <div class="container">
-        <h2 class="title-destaque">Loja</h2>
+        <h2 class="title-produtos">Loja</h2>
 
-        <div id="carousel-novidades" class="owl-carousel owl-theme">
+        <div id="carrossel-lancamentos" class="owl-carousel owl-theme">
           <?php 
             $args_banner = array(
               'post_type'      => 'product',
@@ -149,7 +157,7 @@ get_header();
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="d-block">
                   <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" class="img-fluid">
                   <h3><?php the_title(); ?></h3>
-                  <span><?php echo string_limit_words($excerpt, 20); ?> [...]</span>
+                  
                 </a>
               </div>
             </div>
@@ -164,21 +172,7 @@ get_header();
 
     <!--widget do instagram-->
 
-    <section class="newsletter">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-md-5 my-auto">
-            <div class="titleNews">
-              <h3><strong>News</strong>letter</h3>
-              <p>Insira seu email e ganhe 10%<br> de desconto na primeira compra.</p>
-            </div>
-          </div>
-          <div class="col-md-7 my-auto">
-            <?php echo do_shortcode( '[contact-form-7 id="6" html_id="formNews" title="Formulário newsletter"]' ); ?>
-          </div>
-        </div>
-      </div>
-    </section>
+   
 	</main>
 
 <?php

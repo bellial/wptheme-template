@@ -21,6 +21,14 @@
     <?php wp_body_open(); ?>
 
     <header role="banner">
+		 <section class="header-menu">
+			 <ul>
+				 <li>FRETE GRÁTIS</li>
+				 <li>10% DE DESCONTO NO PAGAMENTO À VISTA</li>
+				 <li>PRAZO DE ENTREGA SUJEITO A CONFIRMAÇÃO</li>
+			</ul>
+			
+		</section>
     <div class="container">
       <div class="row">
 	  	<div class="col-sm-4">
@@ -46,17 +54,14 @@
 				<?php endif; ?>
 			</div>	
 		</div>
-        <div class="col-sm-8">
-			<nav class="primary-navigation">
-            </nav>
-		</div>
-           
-			   <?php
-            // Menu principal
-            default_theme_nav('header', 'nav-main', 'menu-main');
-          ?>
-<!--
-        <div class="box-search d-flex">
+
+		<div class="search-form">
+			<?php if ( is_active_sidebar( 'header-section-one' ) ) : ?>
+			<div class="header-section-one">
+			<?php dynamic_sidebar( 'header-section-one' ); ?>
+			</div>
+			<?php endif; ?>
+
 			<?php dynamic_sidebar( 'form-busca' ); ?>
 			    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/ico-search.svg" alt="Buscar" id="ico-search-busca" class="ico-search">
 		</div>

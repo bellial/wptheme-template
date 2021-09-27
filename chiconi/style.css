@@ -15,16 +15,116 @@
 /************************************************************
 ----------------------OUTLINE OF STYLES----------------------
 
-1.General Styles
-2.Header Styles
-
+1.WordPress WYSIWYG styles
+2.General Styles
+3.Header Styles
+4.Common Menu Styles
+5.Header Menu Styles
+6.Footer Styles
+7.Footer Section Styles
+8.Front Page Styles
 **************************************************************
 *************************************************************/
+
+/*-------------------------------------------------------------------------------
+  1.WordPress WYSIWYG styles
+-------------------------------------------------------------------------------*/
+.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter, div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+@media only screen and (max-width:480px){
+ .single .alignright,.single .alignleft{
+ float:none;
+ }
+}
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  max-width: 96%;
+  /* Image does not overflow the content area */
+  padding: 5px 3px 10px;
+  text-align: center;
+}
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
+}
+
+/*-------------------------------------------------------------------------------
+  2.General Styles
+-------------------------------------------------------------------------------*/
 
 body {
   -webkit-animation: bugfix infinite 1s;
   font-family: "Lato", sans-serif;
   font-size: 16px;
+  background-color: #E5E5E5;
 }
 
 p {
@@ -200,12 +300,13 @@ button {
 }
 
 /*-------------------------------------------------------------------------------
-  2.Header styles
+  3.Header styles
 -------------------------------------------------------------------------------*/
 
 header[role="banner"] {
   height: 92px;
   border-bottom: 1px solid #ccc;
+  background: #1E2528;
 }
 
 .logo {
@@ -227,6 +328,25 @@ header[role="banner"] {
   width: auto;
   max-height: 43px;
   border: 0;
+}
+.header-menu{
+  background: #FBC570;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 16px;
+  color: #2A373D;
+}
+.header-menu ul{
+  display: flex;
+  justify-content: space-evenly;
+}
+.row{
+  display:flex;
+}
+.search-form{
+
 }
 /*-------------------------------------------------------------------------------
   4.Common Menu Styles
@@ -330,4 +450,65 @@ header[role="banner"] {
 }
 .current-menu-item a{
     color: #fdb813;
+}
+/*-------------------------------------------------------------------------------
+  6.Footer Styles
+-------------------------------------------------------------------------------*/
+.widget{
+	margin-bottom:65px;
+}
+.widget:last-child{
+	margin-bottom:0;
+}
+.widget-title{
+  color: #2A373D;
+	font-size:30px;
+	text-align: center;
+	margin-bottom:30px;
+}
+.footer-section-one{
+	padding:65px 15px 70px;
+}
+.textwidget{
+	font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: #B3B3B3;
+}
+.your-email{
+	max-width:300px;
+	margin:0 auto;
+}
+.wpcf7-submit{
+  border-radius: 20%;
+  background-color: #FBC570;
+}
+/*-------------------------------------------------------------------------------
+
+  7.Footer Section Styles
+-------------------------------------------------------------------------------*/
+.copyright{
+  padding:20px 0;
+  border-top:1px solid #ccc;
+}
+.copyright p{
+  margin-bottom:0;
+  font-size:16px;
+  color:#878787;
+}
+/*-------------------------------------------------------------------------------
+  8.Front Page Styles
+-------------------------------------------------------------------------------*/
+.banner-background{
+  background: #2A373D;
+}
+.lancamentos{
+  /*background: #E5E5E5;*/
+  
+}
+.loja{
+  background: #FBC570;
+  
 }
