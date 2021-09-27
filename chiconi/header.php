@@ -61,10 +61,7 @@
 			<?php dynamic_sidebar( 'header-section-one' ); ?>
 			</div>
 			<?php endif; ?>
-
-			<?php dynamic_sidebar( 'form-busca' ); ?>
-			    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/ico-search.svg" alt="Buscar" id="ico-search-busca" class="ico-search">
-		</div>
+		</div> 
         <p class="cad-login">
 						<?php 
               global $current_user; 
@@ -81,10 +78,10 @@
 								?>
 							</a>
 						<?php } ?>
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/ico-user.svg" alt="Usuário" id="ico-user" class="ico-user">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ico-user.svg" alt="Usuário" id="ico-user" class="ico-user">
 					</p>
                     <?php if( WC()->cart->get_cart_contents_count() >= 0) { ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping-bag.svg" alt="Sacola" width="25" height="25">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shopping-bag.svg" alt="Sacola" width="25" height="25">
 							<a href="<?php echo esc_url(home_url()); ?>/sacola" title="Sacola" class="cart-count">
 								<?php echo sprintf ( WC()->cart->get_cart_contents_count() ); ?>
 							</a>

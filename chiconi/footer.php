@@ -7,10 +7,7 @@
   <?php endif; ?>
 
 		<div class="site-info">
-			<div class="container">
-        <p class="logo text-center"><!--a logo fica aside, ajeitar os PATHS-->
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-ono-footer.png" alt="Chiconi" class="img-fluid">
-        </p>
+			<div class="container-footer">
         <div class="row">
           <div class="col-md-3">
             <div class="itemFooter">
@@ -53,6 +50,9 @@
               </ul>
               </div>
           </div>
+          <p class="logo-footer">
+          img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Logo-footer.png" alt="Chiconi" class="img-fluid">
+        </p>
         </div>
       </div>
 		</div>
@@ -64,7 +64,7 @@
                 <div class="copyright">
                   <p><?php printf( 'Chiconi. Todos os direitos reservados. &copy; %s', date( 'Y' ) ); ?></p>
                   <a href="https://www.agencialeaf.com.br/" target="blank" class="d-block" title="Desenvolvido por: Agência Leaf">
-                  <img alt="Desenvolvido por: Agência Leaf" width="20" src="<?php echo get_template_directory_uri(); ?>/assets/images/ico-leaf.svg" alt="Desenvolvido por: Agência Leaf" />
+                  <img alt="Desenvolvido por: Agência Leaf" width="20" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ico-leaf.svg" alt="Desenvolvido por: Agência Leaf" />
           </a>
                 </div>
             </div>

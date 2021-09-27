@@ -32,7 +32,7 @@ if ( ! function_exists( 'chiconi_setup' ) ) :
      * Make theme available for translation.
      * Translations can be placed in the /languages/ directory.
      */
-    load_theme_textdomain( 'chiconi', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'chiconi', get_stylesheet_directory() . '/languages' );
     /**
      * Enable support for post thumbnails and featured images.
      */
@@ -160,7 +160,7 @@ add_action( 'admin_bar_menu', 'remove_logo_toolbar');
 # Alterando logo do login (add a logo no PATH, depois descomentar)
 # ---------------------------------------------------------------------------------
 /*
-$location_path = get_template_directory_uri();
+$location_path = get_stylesheet_directory_uri();
 function my_custom_login_logo() {
 	global $location_path;
 	echo '<style type="text/css">
@@ -201,7 +201,7 @@ function default_theme_nav($menu_location, $menu_class, $menu_id) {
 		 'container_class' => '', // (string) Class that is applied to the container. Default 'menu-{menu slug}-container'.
 		// 'container_id'    => $menu_id, // (string) The ID that is applied to the container.
 		 'menu_class'      => $menu_class, // (string) CSS class to use for the ul element which forms the menu. Default 'menu'.
-		 'menu_id'         => '', // (string) The ID that is applied to the ul element which forms the menu. Default is the menu slug, incremented.
+		 'menu_id'         => $menu_id, // (string) The ID that is applied to the ul element which forms the menu. Default is the menu slug, incremented.
 		 'echo'            => true, // (bool) Whether to echo the menu or return it. Default true.
 		 'fallback_cb'     => 'wp_page_menu', // (callable|bool) If the menu doesn't exists, a callback function will fire. Default is 'wp_page_menu'. Set to false for no fallback.
 		 'before'          => '', // (string) Text before the link markup.
@@ -284,11 +284,11 @@ function chiconi_scripts() {
 
 	
 	// scripts
-	//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
-	//wp_enqueue_script( 'carousel', get_template_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
-	//wp_enqueue_script( 'maskedinput', get_template_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
+	//wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
+	//wp_enqueue_script( 'carousel', get_stylesheet_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
+	//wp_enqueue_script( 'maskedinput', get_stylesheet_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
 	wp_enqueue_script( 'superfish', get_stylesheet_directory_uri() . '/assets/js/superfish.js', array('jquery'), '1.0.0', true );
-	wp_enqueue_script( 'chiconi-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
+	wp_enqueue_script( 'chiconi-js', get_stylesheet_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
 }
 add_action( 'wp_enqueue_scripts', 'chiconi_scripts' );
 

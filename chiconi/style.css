@@ -305,17 +305,12 @@ button {
 
 header[role="banner"] {
   height: 92px;
-  border-bottom: 1px solid #ccc;
   background: #1E2528;
 }
 
 .logo {
   height: 92px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -345,9 +340,10 @@ header[role="banner"] {
 .row{
   flex-wrap: nowrap;
 }
-.search-form{
-
+.wp-block-woocommerce-product-search{
+    border-radius: 30px;
 }
+
 /*-------------------------------------------------------------------------------
   4.Common Menu Styles
 -------------------------------------------------------------------------------*/
@@ -489,6 +485,23 @@ header[role="banner"] {
 
   7.Footer Section Styles
 -------------------------------------------------------------------------------*/
+.container-footer{
+    background: #2A373D;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.itemFooter{
+    color: #FBC570;
+}
+#footer-menu{
+    display:flex;
+    flex-direction: column;
+}
+.logo-footer{
+    float:right;
+}
 .copyright{
   padding:20px 0;
   border-top:1px solid #ccc;
