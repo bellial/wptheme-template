@@ -343,7 +343,7 @@ header[role="banner"] {
   justify-content: space-evenly;
 }
 .row{
-  display:flex;
+  flex-wrap: nowrap;
 }
 .search-form{
 
