@@ -1,0 +1,514 @@
+/*
+ Theme Name:   Chiconi
+ Theme URI:    https://erikachiconisemijoias.com.br/
+ Description:  Erika Chiconi Semijóias
+ Author:       Belial Priss
+ Author URI:   https://github.com/bellial/
+ Template:     twentytwentyone
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, ecommerce, responsive-layout, accessibility-ready
+ Text Domain:  https://erikachiconisemijoias.com.br/
+*/
+
+/************************************************************
+----------------------OUTLINE OF STYLES----------------------
+
+1.WordPress WYSIWYG styles
+2.General Styles
+3.Header Styles
+4.Common Menu Styles
+5.Header Menu Styles
+6.Footer Styles
+7.Footer Section Styles
+8.Front Page Styles
+**************************************************************
+*************************************************************/
+
+/*-------------------------------------------------------------------------------
+  1.WordPress WYSIWYG styles
+-------------------------------------------------------------------------------*/
+.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter, div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+@media only screen and (max-width:480px){
+ .single .alignright,.single .alignleft{
+ float:none;
+ }
+}
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  max-width: 96%;
+  /* Image does not overflow the content area */
+  padding: 5px 3px 10px;
+  text-align: center;
+}
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
+}
+
+/*-------------------------------------------------------------------------------
+  2.General Styles
+-------------------------------------------------------------------------------*/
+
+body {
+  -webkit-animation: bugfix infinite 1s;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  background-color: #E5E5E5;
+}
+
+p {
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="search"]:focus {
+  text-decoration: none;
+  outline: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+ul {
+  list-style: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+.screen-reader-text {
+  position: absolute;
+  left: -9999px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+h1,
+h1 a,
+h2,
+h2 a,
+h3,
+h3 a,
+h4,
+h4 a,
+h5,
+h5 a,
+h6,
+h6 a {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+h2,
+h2 a {
+  font-size: 30px;
+}
+
+h3 {
+  margin-bottom: 22px;
+}
+
+h3,
+h3 a {
+  font-size: 20px;
+}
+
+h4,
+h4 a {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 15px;
+}
+
+iframe {
+  width: 100%;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.seperator {
+  margin: 0 3px;
+}
+
+blockquote {
+  border-left: none;
+  margin-bottom: 10px;
+}
+
+.firstcharacter {
+  float: left;
+  font-size: 60px;
+  padding-top: 4px;
+  line-height: 56px;
+  padding-right: 20px;
+}
+
+.highlighter {
+  display: inline-block;
+  padding: 2px 6px;
+  color: #fff;
+}
+
+.highlighter.grey {
+  background-color: #5e666b;
+}
+
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.parallax-image {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.box-shadow {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.75);
+}
+
+.box-shadow-negative {
+  box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 0.75);
+}
+
+button {
+  cursor: pointer;
+}
+
+/*-------------------------------------------------------------------------------
+  3.Header styles
+-------------------------------------------------------------------------------*/
+
+header[role="banner"] {
+  height: 92px;
+  border-bottom: 1px solid #ccc;
+  background: #1E2528;
+}
+
+.logo {
+  height: 92px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 20px;
+  display: block;
+}
+
+.logo a img {
+  width: auto;
+  max-height: 43px;
+  border: 0;
+}
+.header-menu{
+  background: #FBC570;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 16px;
+  color: #2A373D;
+}
+.header-menu ul{
+  display: flex;
+  justify-content: space-evenly;
+}
+.row{
+  flex-wrap: nowrap;
+}
+.search-form{
+
+}
+/*-------------------------------------------------------------------------------
+  4.Common Menu Styles
+-------------------------------------------------------------------------------*/
+.menu li {
+    position: relative;
+}
+.menu li:hover > ul, .menu li.sfHover > ul {
+    display: block;
+}
+.menu li:hover > a, .menu li a:focus {
+    color: #fdb813;
+}
+.menu li ul {
+    position: absolute;
+    display: none;
+    top: 100%;
+    z-index: 1000;
+    width: 150px;
+    left: 1px;
+    background-color: #f3f3f3;
+}
+.menu li ul a {
+    display: block;
+    text-transform: capitalize;
+    border-width: 1px;
+    line-height: 32px;
+    font-size: 0.875em;
+    color: #222;
+}
+.menu li ul a:hover, .menu li ul a:focus {
+    background-color: #dadada;
+    color: #222;
+}
+.menu li ul ul {
+    left: 100%;
+}
+.menu li ul li {
+    text-align: left;
+}
+.menu li ul li:last-child a {
+    border-bottom: 0;
+}
+.menu a {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    color:#878787;
+}
+.menu > li {
+    display: block;
+    float: left;
+}
+.menu > li:last-child {
+    margin-right: 0;
+}
+.menu > li > a {
+    -moz-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
+}
+.menu-button{
+    height: 92px;
+}
+.menu-button a{
+    line-height: 38px;
+    border-radius:4px;
+    padding:0 20px;
+    background-color:#fdb813;
+    color: black;
+    font-weight: bold;
+    font-size:16px;
+    margin-left:10px;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.menu-button a:hover, .menu-button a:focus{
+    background-color:#6e551a;
+    color:white;
+}
+/*-------------------------------------------------------------------------------
+  5.Header Menu Styles
+-------------------------------------------------------------------------------*/
+.primary-navigation{
+    height: 92px;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;    
+}
+.primary-navigation .menu > li:not(.menu-button) >  a{
+    line-height: 92px;
+}
+.current-menu-item a{
+    color: #fdb813;
+}
+/*-------------------------------------------------------------------------------
+  6.Footer Styles
+-------------------------------------------------------------------------------*/
+.widget{
+	margin-bottom:65px;
+}
+.widget:last-child{
+	margin-bottom:0;
+}
+.widget-title{
+  color: #2A373D;
+	font-size:30px;
+	text-align: center;
+	margin-bottom:30px;
+}
+.footer-section-one{
+	padding:65px 15px 70px;
+}
+.textwidget{
+	font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: #B3B3B3;
+}
+.your-email{
+	max-width:300px;
+	margin:0 auto;
+}
+.wpcf7-submit{
+  border-radius: 20%;
+  background-color: #FBC570;
+}
+/*-------------------------------------------------------------------------------
+
+  7.Footer Section Styles
+-------------------------------------------------------------------------------*/
+.copyright{
+  padding:20px 0;
+  border-top:1px solid #ccc;
+}
+.copyright p{
+  margin-bottom:0;
+  font-size:16px;
+  color:#878787;
+}
+/*-------------------------------------------------------------------------------
+  8.Front Page Styles
+-------------------------------------------------------------------------------*/
+.banner-background{
+  background: #2A373D;
+}
+.lancamentos{
+  /*background: #E5E5E5;*/
+  
+}
+.loja{
+  background: #FBC570;
+  
+}
