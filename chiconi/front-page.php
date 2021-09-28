@@ -25,31 +25,35 @@ get_header();
     <?php if( have_rows('banner_carrossel') ) : ?>
       
         <section class="banner-hero">
-          <div id="carossel-home" class="carousel slide" data-ride="carousel">
-            <?php
+        <?php
                 while( have_rows('banner_carrossel') ) : the_row();
             ?>
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
-                  <img class="d-block w-100" src="<?php the_sub_field('imagem'); ?>" alt="First slide">
-                </a>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            
+            
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
-              <div class="carousel-item">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
                 <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
-                  <img class="d-block w-100" src="<?php the_sub_field('imagem'); ?>" alt="Second slide">
-                </a>
-              </div>
-              <div class="carousel-item">
+                  <img src="<?php the_sub_field('imagem'); ?>" class="d-block w-100" alt="...">
+                  </a>
+                </div>
+                <div class="carousel-item">
                 <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
-                  <img class="d-block w-100" src="<?php the_sub_field('imagem'); ?>" alt="Third slide">
-                </a>
+                  <img src="<?php the_sub_field('imagem'); ?>" class="d-block w-100" alt="...">
+                  </a>
+                </div>
+                <div class="carousel-item">
+                <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
+                  <img src="<?php the_sub_field('imagem'); ?>" class="d-block w-100" alt="...">
+                  </a>
+                </div>
               </div>
+              
             </div>
             <?php endwhile; ?>
           </div>

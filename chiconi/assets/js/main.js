@@ -24,5 +24,33 @@
    $('.carousel').carousel({
     interval: 2000
   })
+// // Banner Home - carrossel da scher
+//   // ----------------------------------------------------------------------------
+//   if ($('#carousel-home').length > 0) {
+//     $('#carousel-home').owlCarousel({
+//       loop: true,
+//       margin: 0,
+//       nav: false,
+//       dots: true,
+//       items: 1,
+//       smartSpeed: 400,
+//       autoplay: true,
+//       autoplayTimeout: 5000
+//     });
+//   }
+  // Open nav menu slide
+  // ----------------------------------------------------------------------------
+  $('.menu-mobile').click(function () {
+    $('.site-header').toggleClass('open');
+  });
+
+
+  $('.cart-count, .mfp-close').click(function () {
+    $('.side-cart').toggleClass('open-cart');
+  });
+
+  $('#ico-search-busca').on('click', function(){
+    $('.woocommerce-product-search').addClass('active-search'); //class no form
+  });
      
  })(jQuery);

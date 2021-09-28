@@ -290,7 +290,7 @@ function chiconi_scripts() {
 	wp_enqueue_script( 'superfish', get_stylesheet_directory_uri() . '/assets/js/superfish.js', array('jquery'), '1.0.0', true );
 	wp_enqueue_script( 'chiconi-js', get_stylesheet_directory_uri() . '/assets/js/main.js', array('jquery'), '_S_VERSION', true );
 }
-add_action( 'wp_enqueue_scripts', 'chiconi_scripts' );
+add_action( 'wp_enqueue_scripts', 'chiconi_scripts', 99 );
 
 /**
  * Register widget area.

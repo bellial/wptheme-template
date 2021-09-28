@@ -308,9 +308,12 @@ button {
 header[role="banner"] {
   background: #1E2528;
 }
-header .container{
+header .container-fluid{
   height: 125px;
   margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .logo {
@@ -337,9 +340,6 @@ header .container{
   display: flex;
   justify-content: space-evenly;
 }
-.row{
-  flex-wrap: nowrap;
-}
 
 .wc-block-product-search__field{
     border-radius: 30px;
@@ -357,7 +357,7 @@ header .container{
   margin-left: 6em;
 }
 .wc-block-product-search__button{
-  margin-left: -7% !important;
+  margin-left: -2em !important;
   border: none;
   border-radius: 30px;
   background-color: #fff;
@@ -367,9 +367,7 @@ header .container{
   color: #2E3147;
   display: flex;
   align-items: center;
-  width: 27%;
   justify-content: space-evenly;
-  margin-top: -0.5em;
 }
 .button-login{
   background-color: #FBC570;
@@ -384,12 +382,24 @@ header .container{
   font-style: normal;
   font-weight: 700;
 }
+.zap{
+  text-align: left;
+}
+.zap img{
+  height: 40px;
+  margin: -3em 0 0 1em;
+}
 .btn-whatsapp{
   color: #fff;
   font-family: Poppins;
   font-style: normal;
   font-weight: 300;
   font-size: 10px;
+}
+.search-items{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /*-------------------------------------------------------------------------------
@@ -496,6 +506,63 @@ header .container{
 .current-menu-item a{
     color: #fdb813;
 }
+.menu-mobile {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.menu-mobile .nav-icon {
+  width: 25px;
+  height: 14px;
+  position: relative;
+  cursor: pointer;
+  float: right;
+  transition: all 0.5s ease-in-out;
+}
+.menu-mobile .nav-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #db8028; /* change color*/
+  opacity: 1;
+  left: 0;
+  font-weight: 700;
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transition: all 0.25s ease-in-out;
+}
+.menu-mobile .nav-icon span:nth-child(1) {
+  top: 0;
+}
+.menu-mobile .nav-icon span:nth-child(2) {
+  top: 6px;
+}
+.menu-mobile .nav-icon span:nth-child(3) {
+  top: 12px;
+}
+@media (max-width: 1330px) {
+  .menu-mobile {
+    z-index: 25;
+  }
+}
+.site-header.open .menu-mobile .nav-icon span:nth-child(1) {
+  top: 7px;
+  transform: rotate(135deg);
+}
+.site-header.open .menu-mobile .nav-icon span:nth-child(2) {
+  opacity: 0;
+}
+.site-header.open .menu-mobile .nav-icon span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-135deg);
+}
+@media (max-width: 991px) {
+  .site-header.open .menu-mobile .nav-icon span {
+    background: #fff;
+  }
+}
 /*-------------------------------------------------------------------------------
   6.Footer Styles
 -------------------------------------------------------------------------------*/
@@ -585,10 +652,7 @@ header .container{
 -------------------------------------------------------------------------------*/
 
 @media (max-width: 991px){
-  header .row{
-    flex-direction: column;
-  }
-  header .container{
+  header .container-fluid{
     height: 100%;
   }
   .wc-block-product-search__field{
@@ -598,22 +662,12 @@ header .container{
     background-color: transparent;
     margin: 0 !important;
   }
-  .menu-mobile .nav-icon span:nth-child(1) {
-    top: 0;
-}
-  .menu-mobile .nav-icon span {
-  display: block;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background: #db8028;
-  opacity: 1;
-  left: 0;
-  font-weight: 700;
-  -webkit-transform: rotate(0deg);
-    transition: all .25s ease-in-out;
-}
+ 
 .primary-navigation{
   display: none;
 }
+.zap{
+  display: none;
 }
+}
+
