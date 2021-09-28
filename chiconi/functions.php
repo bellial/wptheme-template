@@ -284,7 +284,7 @@ function chiconi_scripts() {
 
 	
 	// scripts
-	//wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/assets/js/lib/bootstrap.min.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '1.0.0', true );
 	//wp_enqueue_script( 'carousel', get_stylesheet_directory_uri() . '/assets/js/lib/owl.carousel.min.js', array('jquery'), '20151215', true );
 	//wp_enqueue_script( 'maskedinput', get_stylesheet_directory_uri() . '/assets/js/lib/jquery.maskedinput.min.js', array('jquery'), '20151215', true );
 	wp_enqueue_script( 'superfish', get_stylesheet_directory_uri() . '/assets/js/superfish.js', array('jquery'), '1.0.0', true );
@@ -331,31 +331,38 @@ return "https://erikachiconisemijoias.com.br/loja/";
 }
 
 /*woocommerce cart icon */
-/**
- * Ensure cart contents update when products are added to the cart via AJAX
- *
 
-* function my_header_add_to_cart_fragment( $fragments ) {
+ /*Ensure cart contents update when products are added to the cart via AJAX*/
  
-* 	ob_start();
 
-* 	$cart_url =  WC()->cart->get_cart_url();
-* 	$cart_contents_count = WC()->cart->cart_contents_count;
-* 	$cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'Carrinho'), $cart_contents_count);
-* 	$cart_total = WC()->cart->get_cart_total();
-
-* 	?><a class="fs-cart-contents" href="<?php echo $cart_url; ?>" title="Carrinho"><i class="fa fa-shopping-cart"></i><?php
-* 	if ( $cart_contents_count > 0 ) {
-* 	?>
-* 		<span class="cart-quantity"><?php echo $cart_contents_count; ?></span> <span class="cart-total"><?php echo $cart_total; ?></span>
-* 		<?php            
-* 	}
-* 	?></a><?php
+ function my_header_add_to_cart_fragment( $fragments ) {
  
-* 	$fragments['a.fs-cart-contents'] = ob_get_clean();
+	ob_start();
+
+ 	$cart_url =  WC()->cart->get_cart_url();
+ 	$cart_contents_count = WC()->cart->cart_contents_count;
+ 	$cart_contents = sprintf(_n('%d item', '%d items', $cart_contents_count, 'Carrinho'), $cart_contents_count);
+ 	$cart_total = WC()->cart->get_cart_total();
+
+ 	?><a class="fs-cart-contents" href="<?php echo $cart_url; ?>" title="Carrinho"><i class="fa fa-shopping-cart"></i><?php
+ 	if ( $cart_contents_count > 0 ) {
+ 	?>
+ 		<span class="cart-quantity"><?php echo $cart_contents_count; ?></span> <span class="cart-total"><?php echo $cart_total; ?></span>
+ 		<?php            
+ 	}
+ 	?></a>
      
-* 	return $fragments;
-* }
-* add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
-*/
+     <?php
+ 
+ 	$fragments['a.fs-cart-contents'] = ob_get_clean();
+     
+ 	return $fragments;
+ }
+ add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+ 
+
+
+ add_filter( 'get_product_search_form' , 'me_custom_product_searchform' );
+
+
 

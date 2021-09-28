@@ -19,10 +19,12 @@
 2.General Styles
 3.Header Styles
 4.Common Menu Styles
-5.Header Menu Styles
+5.Home Menu Styles
 6.Footer Styles
 7.Footer Section Styles
 8.Front Page Styles
+9.Woocommerce Styles
+10.Media Query Styles
 **************************************************************
 *************************************************************/
 
@@ -304,8 +306,11 @@ button {
 -------------------------------------------------------------------------------*/
 
 header[role="banner"] {
-  height: 92px;
   background: #1E2528;
+}
+header .container{
+  height: 125px;
+  margin-top: 2%;
 }
 
 .logo {
@@ -314,14 +319,9 @@ header[role="banner"] {
   align-items: center;
 }
 
-.logo a {
-  font-size: 20px;
-  display: block;
-}
-
-.logo a img {
+.logo img {
   width: auto;
-  max-height: 43px;
+  max-height: 92px;
   border: 0;
 }
 .header-menu{
@@ -340,14 +340,63 @@ header[role="banner"] {
 .row{
   flex-wrap: nowrap;
 }
-.wp-block-woocommerce-product-search{
+
+.wc-block-product-search__field{
     border-radius: 30px;
+    border:none;
+}
+.search-form{
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  border:none;
+}
+::placeholder{
+  color:#2E3147;
+  text-align: center;
+  margin-left: 6em;
+}
+.wc-block-product-search__button{
+  margin-left: -7% !important;
+  border: none;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.cad-login{
+  color: #2E3147;
+  display: flex;
+  align-items: center;
+  width: 27%;
+  justify-content: space-evenly;
+  margin-top: -0.5em;
+}
+.button-login{
+  background-color: #FBC570;
+  border-radius: 30px;
+  border: none;
+  padding: 0.5em;
+  margin-top: 1%;
+}
+.button-login a{
+  color: #2E3147;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 700;
+}
+.btn-whatsapp{
+  color: #fff;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
 }
 
 /*-------------------------------------------------------------------------------
   4.Common Menu Styles
 -------------------------------------------------------------------------------*/
 .menu li {
+  font-family: 'Times New Roman', Times, serif;
     position: relative;
 }
 .menu li:hover > ul, .menu li.sfHover > ul {
@@ -517,11 +566,54 @@ header[role="banner"] {
 .banner-background{
   background: #2A373D;
 }
+/*-------------------------------------------------------------------------------
+  9.Woocommerce Styles
+-------------------------------------------------------------------------------*/
 .lancamentos{
   /*background: #E5E5E5;*/
   
 }
 .loja{
-  background: #FBC570;
-  
+  background: #FBC570; 
+}
+.card{
+  width: 18rem;
+}
+
+/*-------------------------------------------------------------------------------
+  10.Media Query Styles
+-------------------------------------------------------------------------------*/
+
+@media (max-width: 991px){
+  header .row{
+    flex-direction: column;
+  }
+  header .container{
+    height: 100%;
+  }
+  .wc-block-product-search__field{
+    display: none;
+  }
+  .wc-block-product-search__button{
+    background-color: transparent;
+    margin: 0 !important;
+  }
+  .menu-mobile .nav-icon span:nth-child(1) {
+    top: 0;
+}
+  .menu-mobile .nav-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #db8028;
+  opacity: 1;
+  left: 0;
+  font-weight: 700;
+  -webkit-transform: rotate(0deg);
+    transition: all .25s ease-in-out;
+}
+.primary-navigation{
+  display: none;
+}
 }

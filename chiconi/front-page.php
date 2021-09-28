@@ -25,15 +25,32 @@ get_header();
     <?php if( have_rows('banner_carrossel') ) : ?>
       
         <section class="banner-hero">
-          <div id="carossel-home" class="container slide_home">
+          <div id="carossel-home" class="carousel slide" data-ride="carousel">
             <?php
                 while( have_rows('banner_carrossel') ) : the_row();
             ?>
-              <div>
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
                 <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
-                <img src="<?php the_sub_field('imagem'); ?>" alt="" class="img-fluid">
+                  <img class="d-block w-100" src="<?php the_sub_field('imagem'); ?>" alt="First slide">
                 </a>
               </div>
+              <div class="carousel-item">
+                <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
+                  <img class="d-block w-100" src="<?php the_sub_field('imagem'); ?>" alt="Second slide">
+                </a>
+              </div>
+              <div class="carousel-item">
+                <a href="<?php the_sub_field('link_banner'); ?>" class="d-block" title="">
+                  <img class="d-block w-100" src="<?php the_sub_field('imagem'); ?>" alt="Third slide">
+                </a>
+              </div>
+            </div>
             <?php endwhile; ?>
           </div>
         </section>
@@ -44,7 +61,7 @@ get_header();
     ?>
 
    <section class="lancamentos main-woocommerce">
-      <div class="container">
+      <div class="container-fluid">
         <h2 class="title-produtos">Lançamentos</h2>
 
         <div id="carrossel-lancamentos" class="owl-carousel owl-theme">
@@ -69,16 +86,16 @@ get_header();
 
               global $product; 
           ?>
-            <div class="item">
-              <div class="itemLancamento">
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="d-block text-center">
-                  <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="img-fluid">
+            <div class="item card">
+              <div class="itemLancamento card-body">
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="card-text d-block text-center">
+                  <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="img-fluid card-img-top">
                 </a>
-                <?php the_title('<h3>', '</h3>'); ?>
+                <?php the_title('<h3 class="card-title">', '</h3>'); ?>
                 <span class="valor">
                   <?php echo $product->get_price_html(); ?>
                 </span>
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn-comprar">Comprar</a>
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-comprar">Comprar</a>
               </div>
             </div>
             <?php
@@ -90,7 +107,7 @@ get_header();
       </div>
     </section>
     <section class="loja main-woocommerce"> <!--igual a anterior porém loja-->
-      <div class="container">
+      <div class="container-fluid">
         <h2 class="title-produtos">Loja</h2>
 
         <div id="carrossel-lancamentos" class="owl-carousel owl-theme">
@@ -115,16 +132,16 @@ get_header();
 
               global $product; 
           ?>
-            <div class="item">
-              <div class="itemNovidade">
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="d-block text-center">
-                  <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="img-fluid">
+            <div class="item card">
+              <div class="itemNovidade card-body">
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="card-text d-block text-center">
+                  <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="card-img-top img-fluid">
                 </a>
-                <?php the_title('<h3>', '</h3>'); ?>
+                <?php the_title('<h3 class="card-title">', '</h3>'); ?>
                 <span class="valor">
                   <?php echo $product->get_price_html(); ?>
                 </span>
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn-comprar">Comprar</a>
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-comprar">Comprar</a>
               </div>
             </div>
             <?php
@@ -136,7 +153,7 @@ get_header();
       </div>
     </section>
     <section class="dicas-blogueira">
-      <div class="container">
+      <div class="container-fluid">
         <h2>Dicas da Chiconi</h2>
 
         <div class="row">

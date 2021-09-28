@@ -25,11 +25,11 @@
 			 <ul>
 				 <li>FRETE GRÁTIS</li>
 				 <li>10% DE DESCONTO NO PAGAMENTO À VISTA</li>
-				 <li>PRAZO DE ENTREGA SUJEITO A CONFIRMAÇÃO</li>
+				 <li>PRAZO DE ENTREGA SUJEITO À CONFIRMAÇÃO</li>
 			</ul>
 			
 		</section>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
 	  	<div class="col-sm-4">
 			<div class="logo">
@@ -55,40 +55,60 @@
 			</div>	
 		</div>
 
-		<div class="search-form">
+		
+		 <div class="search-form">
 			<?php if ( is_active_sidebar( 'header-section-one' ) ) : ?>
 			<div class="header-section-one">
 			<?php dynamic_sidebar( 'header-section-one' ); ?>
 			</div>
 			<?php endif; ?>
 		</div> 
-        <p class="cad-login">
+        <section class="cad-login">
+			
+					<button class="button-login">
+						<a href="<?php echo esc_url(home_url()); ?>/sacola" title="Sacola" class="cart-count">
+						<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ico-bag.svg" alt="Sacola" width="25" height="25">
+						<span class="d-none d-lg-inline-block">Sacola</span>
 						<?php 
-              global $current_user; 
-              wp_get_current_user();
-							
-							if ( ! is_user_logged_in() ) { 
-						?>
-							<a href="<?php echo esc_url(home_url()); ?>/minha-conta" class="d-none d-lg-inline-block" title="Cadastre-se">Cadastre-se </a> <span class="d-none d-lg-inline-block">ou faça</span>
-							<a href="<?php echo esc_url(home_url()); ?>/minha-conta" class="d-none d-lg-inline-block" title="Login">seu login</a>
-						<?php } else { ?>
-							<a href="<?php echo esc_url(home_url()); ?>/minha-conta" class="d-none d-lg-inline-block" title="Olá">
-								<?php
-									echo 'Olá, ' . $current_user->display_name . "\n";
-								?>
-							</a>
-						<?php } ?>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ico-user.svg" alt="Usuário" id="ico-user" class="ico-user">
-					</p>
-                    <?php if( WC()->cart->get_cart_contents_count() >= 0) { ?>
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shopping-bag.svg" alt="Sacola" width="25" height="25">
-							<a href="<?php echo esc_url(home_url()); ?>/sacola" title="Sacola" class="cart-count">
-								<?php echo sprintf ( WC()->cart->get_cart_contents_count() ); ?>
-							</a>
-						<?php } ?> --> <!--ver qual se assemelha mais com o layout, se ono ou scher e colocar as classes accordingly -->
+							if( WC()->cart->get_cart_contents_count() > 0) { 
+						 echo sprintf ( WC()->cart->get_cart_contents_count() ); 
+							}?>
+						 
+						</a>
+					</button>
+				<button class="button-login">
+				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ico-user.svg" alt="Usuário" id="ico-user" class="ico-user" width="25" height="25"><span class="d-none d-lg-inline-block"></span>
+			<?php 
+            	global $current_user; 
+            	wp_get_current_user();
+
+				if ( ! is_user_logged_in() ) { 
+			?>
+			
+				<a href="<?php echo esc_url(home_url()); ?>/minha-conta" class="d-none d-lg-inline-block" title="Login">
+					
+					<a href="<?php echo esc_url(home_url()); ?>/minha-conta" class="d-none d-lg-inline-block" title="Login">Login</a>
+			<?php } else { ?>
+					<a href="<?php echo esc_url(home_url()); ?>/minha-conta" class="d-none d-lg-inline-block" title="Olá">
+				<?php
+					echo 'Olá, ' . $current_user->display_name . "\n";
+				?>
+					</a>
+				</a>
+			
+			<?php } ?>
+			</button>
+			
+			</section>
+			<section class="col-lg-2 my-auto d-none d-lg-block">
+          <a href="https://api.whatsapp.com/send?phone=08008794848&text=Ol%C3%A1!" title="Precisa de ajuda?" target="_blank" class="btn-whatsapp">
+            <span>Alguma dúvida?<br>Te ajudo agora!</span>
+            <img class="img-fluid" alt="Precisa de ajuda?" src="<?php echo get_template_directory_uri(); ?>/assets/images/ico-whatsapp.png">
+          </a>
+			</section>
                     
                     <!-- Menu responsivo -->
-					<div class="menu-mobile my-auto">
+					<div class="menu-mobile my-auto d-block d-lg-none">
 						<div class="nav-icon"> 
 							<span></span> 
 							<span></span> 

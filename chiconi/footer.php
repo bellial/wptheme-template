@@ -51,7 +51,7 @@
               </div>
           </div>
           <p class="logo-footer">
-          img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Logo-footer.png" alt="Chiconi" class="img-fluid">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Logo-footer.png" alt="Chiconi" class="img-fluid">
         </p>
         </div>
       </div>
