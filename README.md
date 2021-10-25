@@ -1,2 +1,2 @@
-# wptheme-chiconi
-wordpress theme for a chiconi ecommerce
+# wptheme-belial
+wordpress templates for custom ecommerce theme 
