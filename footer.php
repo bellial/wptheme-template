@@ -29,9 +29,9 @@
             <div class="col-lg-3">
               <div class="itemFooter">
                 <div class="redeSocial container">
-                  <ul class="socialIcons"><!--created with ACF-->
+                  <ul class="socialIcons">
                     <?php
-                      while( have_rows('redes_sociais', 'option') ): the_row();
+                      while( have_rows('redes_sociais', 'option') ): the_row();//made with ACF
                     ?>
                     <li>
                       <a href="<?php the_sub_field('url', 'option'); ?>" title="<?php the_sub_field('tag', 'option'); ?>" target="_blank" rel="noopener noreferrer">
