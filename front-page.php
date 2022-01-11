@@ -14,16 +14,16 @@ get_header();
 
 <main>
   <section class="banner-background">
-    <section class="banner-hero">
+    <section class="container banner-hero">
 			<?php
-        if( have_rows('banner_carrossel') ):
+        if( have_rows('banner_carrossel') )://made with ACF
           $i = 0; // Set the increment variable
 			?>
        <!--Boostrap 5 carousel-->
-      <div id="banner-carrossel" class="carousel slide shadow curved" data-bs-ride="carousel" data-interval="4000">
+      <div id="banner-carrossel" class="carousel slide shadow curved" data-bs-touch="true" data-bs-ride="carousel" data-interval="4000">
         <div class="carousel-indicators">
 				  <?php 
-				    while( have_rows('banner_carrossel') ) : the_row();
+				    while( have_rows('banner_carrossel') ) : the_row();//made with ACF
 				  ?>
           <button type="button" data-bs-target="#banner-carrossel" data-bs-slide-to="<?php echo $i;?>" class="<?php if($i == 0) echo 'active';?>" aria-current="true">
           </button>
@@ -35,8 +35,8 @@ get_header();
 
         <div class="carousel-inner">
           <?php 
-            $j = 0; 
-            while( have_rows('banner_carrossel') ) : the_row(); 
+            $j = 0; //start the increment variable
+            while( have_rows('banner_carrossel') ) : the_row();//made with ACF 
              $image = get_sub_field('imagem');
              $link = get_sub_field('link_banner');
           ?>
@@ -61,7 +61,7 @@ get_header();
 	  <section class="lancamentos main-woocommerce container">
       <h2 class="title-produtos">Lançamentos</h2>
 	    <?php 
-        if ( is_active_sidebar( 'home-section-one' ) ) : 
+        if ( is_active_sidebar( 'home-section-one' ) ) ://created in widget area 
           dynamic_sidebar( 'home-section-one' ); 
         endif; 
       ?>
@@ -72,7 +72,7 @@ get_header();
     <section class="loja main-woocommerce container">
       <h2 class="title-produtos">Loja</h2>
 	    <?php 
-        if ( is_active_sidebar( 'home-section-two' ) ) : 
+        if ( is_active_sidebar( 'home-section-two' ) ) ://created in widget area 
           dynamic_sidebar( 'home-section-two' ); 
         endif; 
       ?>
@@ -80,7 +80,7 @@ get_header();
   </section><!--container-loja-->
   
   <section class="dicas-blogueira container">
-    <h2 class="title-produtos">Dicas</h2>
+    <h2 class="title-produtos">Blog</h2>
     <div class="row justify-content-lg-evenly">
       <?php
         $argsPost = array(
@@ -108,24 +108,24 @@ get_header();
     </div><!--justify-content-lg-evenly-->
   </section><!--dicas-blogueira-->
 
-  <!--widget do instagram-->
+  <!--Instagram plugin area-->
   <section class="widget-insta">
-    <h2 class="title-produtos">Siga Nosso Instagram</h2>
+    <h2 class="title-produtos">Follow Our Instagram</h2>
 	</section><!--widget-insta-->
 
 	<section class="newsletter container">
     <div class="row">
       <div class="col-lg-6">
-        <h4 class="widget-title">Acompanhe nossas novidades</h4>
+        <h4 class="widget-title">News</h4>
         <p class="textwidget">
-          Cadastre seu e-mail para receber informações exclusivas
+          Follow our exclusive newsletter
         </p>
       </div><!--col-lg-6-->
       <div class="col-lg-6 footer-form">
         <?php 
-          if ( is_active_sidebar( 'footer-section-one' ) ) : 
+          if ( is_active_sidebar( 'footer-section-one' ) ) : //created in widget area
         ?>
-          <div class="row footer-section-one">
+          <div class="footer-section-one">
             <?php 
               dynamic_sidebar( 'footer-section-one' ); 
             ?>
