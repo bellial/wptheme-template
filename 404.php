@@ -22,7 +22,7 @@ get_header();
 
 					
 
-				<?php dynamic_sidebar( '404' ); ?>//created in widget area
+				<?php dynamic_sidebar( '404' ); ?><!--created in widget area-->
 					
 
 			</div><!-- page-content -->
