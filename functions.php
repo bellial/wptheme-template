@@ -8,18 +8,23 @@
  * @package your-theme
  */
 
-ob_start();
+//Turn on all error reporting
+error_reporting();//error_reporting(0) to turn off
 
-//Turn off all error reporting
-error_reporting(0);
+/**
+ * First, let's set the maximum content width based on the theme's design and stylesheet.
+ * This will limit the width of all uploaded images and embeds.
+ */
 
-if (!defined('THEME_VERSION')) {
-    // Replace the version number of the theme on each release.
-    define('THEME_NAME', 'Your Theme');
-    define('THEME_VERSION', '1.0.0');
+if ( ! isset( $content_width ) ) 
+	$content_width = 960;
+
+// Replace the version number of the theme on each release.
+if (!defined('_S_VERSION')) {
+    define('_S_VERSION', '1.0.0');
 }
 
-if (!function_exists('yourtheme')) :
+if (!function_exists('yourtheme_setup')) :
     /**
      * Sets up theme defaults and registers support for various WordPress features.
      *
@@ -39,18 +44,6 @@ if (!function_exists('yourtheme')) :
          */
 
         load_theme_textdomain('your-theme', get_stylesheet_directory() . '/languages');
-
-        /**
-         * Registers navigation menu locations for a theme.
-         * Use register_nav_menu() for creating a single menu. 
-         * See Navigation Menus (https://codex.wordpress.org/Navigation_Menus) for adding theme support.
-         */
-
-        register_nav_menus(array(
-            'header' => __('Menu do Header', 'your-theme'),
-            'main' => __('Menu Principal', 'your-theme'),
-            'footer' => __('Menu do Rodapé', 'your-theme'),
-        ));
 
         /**
          * This feature enables Post Thumbnails (https://codex.wordpress.org/Post_Thumbnails) support for a theme. 
@@ -74,7 +67,19 @@ if (!function_exists('yourtheme')) :
          *  the_post_thumbnail();
          * }
          */
-        
+
+        /**
+         * Registers navigation menu locations for a theme.
+         * Use register_nav_menu() for creating a single menu. 
+         * See Navigation Menus (https://codex.wordpress.org/Navigation_Menus) for adding theme support.
+         */
+
+        register_nav_menus(array(
+            'header' => __('Header Menu', 'your-theme'),
+            'main' => __('Main Menu', 'your-theme'),
+            'footer' => __('Footer Menu', 'your-theme'),
+        ));
+     
         /**
          * This feature enables Post Formats support for a theme. When using child themes, be aware that it
          * will override the formats as defined by the parent theme, not add to it.
@@ -91,6 +96,33 @@ if (!function_exists('yourtheme')) :
          *  echo 'This is a quote.';
          * }
          */
+
+         // This feature enables plugins and themes to manage the document title tag (https://codex.wordpress.org/Title_Tag). 
+
+        add_theme_support('title-tag');
+
+           // Enables Theme_Logo (https://codex.wordpress.org/Theme_Logo) support for a theme.
+
+           add_theme_support('custom-logo');
+
+           /**
+            * Note that you can add default arguments using:
+            * add_theme_support( 'custom-logo', array(
+            *     'height'               => 100,
+            *     'width'                => 400,
+            *     'flex-height'          => true,
+            *     'flex-width'           => true,
+            *     'header-text'          => array( 'site-title', 'site-description' ),
+            *     'unlink-homepage-logo' => true,
+            * ) );
+            */
+
+             /*
+        * Switch default core markup for search form, comment form, and comments
+        * to output valid HTML5.
+        */
+
+        add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
 
         //This feature enables Custom_Backgrounds (https://codex.wordpress.org/Custom_Backgrounds) support for a theme.
 
@@ -113,40 +145,12 @@ if (!function_exists('yourtheme')) :
          *  );
          *add_theme_support( 'custom-background', $defaults );
          */
-
-         // Enables Theme_Logo (https://codex.wordpress.org/Theme_Logo) support for a theme.
-
-        add_theme_support('custom-logo');
-
-        /**
-         * Note that you can add default arguments using:
-         * add_theme_support( 'custom-logo', array(
-         *     'height'               => 100,
-         *     'width'                => 400,
-         *     'flex-height'          => true,
-         *     'flex-width'           => true,
-         *     'header-text'          => array( 'site-title', 'site-description' ),
-         *     'unlink-homepage-logo' => true,
-         * ) );
-         */
-
-        /*
-        * Switch default core markup for search form, comment form, and comments
-        * to output valid HTML5.
-        */
-
-        add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
-
-        // This feature enables plugins and themes to manage the document title tag (https://codex.wordpress.org/Title_Tag). 
-
-        add_theme_support('title-tag');
-
-        /* woocommerce theme support*/
+    
+        /* woocommerce theme support with integrated plugins*/
 
         add_theme_support('woocommerce', array(
             'thumbnail_image_width' => 150,
-            'single_image_width'    => 300,
-
+            'single_image_width'    => 500,
             'product_grid'          => array(
                 'default_rows'    => 3,
                 'min_rows'        => 2,
@@ -161,22 +165,23 @@ if (!function_exists('yourtheme')) :
         add_theme_support('wc-product-gallery-slider');
     }
 
+
     remove_action('wp_head', 'rsd_link'); // remove really simple discovery link
     remove_action('wp_head', 'wp_generator'); // remove wordpress version
-    remove_action('wp_head', 'wlwmanifest_link'); // remove wlwmanifest.xml (needed to support windows live writer)
-    remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0); // Remove shortlink  
-    remove_action('wp_head', 'rest_output_link_wp_head', 10); //Disable Link header for the REST API
-    remove_action('template_redirect', 'rest_output_link_header', 11, 0); //Disable Link header for the REST API
-    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10); //Remove oEmbed discovery links
     remove_action('wp_head', 'feed_links', 2); // remove rss feed links (make sure you add them in yourself if youre using feedblitz or an rss service)
     remove_action('wp_head', 'feed_links_extra', 3); // removes all extra rss feed links
     remove_action('wp_head', 'index_rel_link'); // remove link to index page
+    remove_action('wp_head', 'wlwmanifest_link'); // remove wlwmanifest.xml (needed to support windows live writer)
     remove_action('wp_head', 'start_post_rel_link', 10, 0); // remove random post link
     remove_action('wp_head', 'parent_post_rel_link', 10, 0); // remove parent post link
     remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // remove the next and previous post links
     remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('wp_print_styles', 'print_emoji_styles'); // Disabling emoji library from Wordpress.
+    remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0); // Remove shortlink  
+    remove_action('wp_head', 'rest_output_link_wp_head', 10); //Disable Link header for the REST API
+    remove_action('template_redirect', 'rest_output_link_header', 11, 0); //Disable Link header for the REST API
+    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10); //Remove oEmbed discovery links
     remove_action('wp_head', 'rest_output_link_wp_head', 10); // Remove the REST API lines from the HTML Header
     remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
     remove_action('rest_api_init', 'wp_oembed_register_route'); // Remove the REST API endpoint.
@@ -200,6 +205,7 @@ add_action('woocommerce_before_add_to_cart_quantity', 'wp_echo_qty_front_add_car
 function wp_echo_qty_front_add_cart() {
     echo '<div class="qty">QTD </div>';
 }
+
 
 /* Remove wp version from any enqueued scripts
 * --------------------------------------------------------------------------------- */
@@ -256,15 +262,6 @@ function custom_logo_login_url() {
 
 add_filter('login_headerurl', 'custom_logo_login_url');
 
-/* Custom logo title on login page
-* --------------------------------------------------------------------------------- */
-
-function custom_logo_login_title() {
-    return get_bloginfo('name');
-}
-
-add_filter('login_headertitle', 'custom_logo_login_title');
-
 /* Custom admin footer
 * --------------------------------------------------------------------------------- */
 
@@ -292,7 +289,7 @@ function my_custom_login_logo() {
     global $location_path;
     echo '<style type="text/css">
 		.login h1 a {
-		background-image:url(' . $location_path . '/assets/images/Logo-header.png) !important;
+		background-image:url(' . $location_path . '/assets/images/Logo-header.png);
 		width: 280px;
 		height: 52px;
 		margin-bottom: 0;
@@ -302,6 +299,15 @@ function my_custom_login_logo() {
 }
 
 add_action('login_head', 'my_custom_login_logo');
+
+/* Custom logo title on login page
+* --------------------------------------------------------------------------------- */
+
+function custom_logo_login_title() {
+    return get_bloginfo('name');
+}
+
+add_filter('login_headertitle', 'custom_logo_login_title');
 
 /* Remove Recent Comments
 * --------------------------------------------------------------------------------- */
@@ -356,12 +362,44 @@ function customize_login_headertext($headertext) {
     return $headertext;
 }
 
+/*
+* Remove JSON API links in header html
+*/
+
+function remove_json_api(){
+
+    // Remove the REST API lines from the HTML Header
+    remove_action('wp_head', 'rest_output_link_wp_head', 10);
+    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+
+    // Remove the REST API endpoint.
+    remove_action('rest_api_init', 'wp_oembed_register_route');
+
+    // Turn off oEmbed auto discovery.
+    add_filter('embed_oembed_discover', '__return_false');
+
+    // Don't filter oEmbed results.
+    remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+
+    // Remove oEmbed discovery links.
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+
+    // Remove oEmbed-specific JavaScript from the front-end and back-end.
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+
+    // Remove all embeds rewrite rules.
+    //add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' );
+
+}
+add_action('after_setup_theme', 'remove_json_api');
+
 /**
  * Snippet completely disable the REST API and shows {"code":"rest_disabled","message":"The REST API is disabled on this site."} 
  * when visiting http://yoursite.com/wp-json/
  */
 
 function disable_json_api() {
+
     // Filters for WP-API version 1.x
     add_filter('json_enabled', '__return_false');
     add_filter('json_jsonp_enabled', '__return_false');
@@ -402,6 +440,7 @@ add_action('wp_enqueue_scripts', 'yourtheme_scripts', 99);
  */
 
 function yourtheme_register_sidebars() {
+
     register_sidebar(array(
         'name'          => esc_html__('Footer Section One', 'your-theme'),
         'id'            => 'footer-section-one',
@@ -473,7 +512,7 @@ function woocommerce_header_add_to_cart_fragment($fragments) {
     ob_start();
 
 ?>
-    <a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('Sacola', 'your-theme'); ?>">
+    <a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('Cart', 'your-theme'); ?>">
         <?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'your-theme'), $woocommerce->cart->cart_contents_count); ?> – <?php echo $woocommerce->cart->get_cart_total(); ?>
     </a>
 <?php
@@ -511,7 +550,7 @@ function new_excerpt_more($more) {
 
 add_filter('excerpt_more', 'new_excerpt_more');
 
-// Create options page on wp admin sidebar
+// Create options page on wp admin sidebar to be used by ACF plugin
 
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page([
@@ -548,10 +587,56 @@ function woo_remove_product_tabs($tabs) {
     return $tabs;
 }
 
+//shortcode para parcelamento na grid dos produtos (plugin)
+
+function parcelamento(){
+	global $product;
+    $prefix = 
+	$taxa_de_juros = esc_html(get_option('parcelas_mwp_juros'));
+	$total_meses=esc_html(get_option('parcelas_mwp_qtde'));
+	$total_meses_s_juros=esc_html(get_option('parcelas_mwp_qtde_s_juros'));
+	$investimento_inicial = $product->price;
+    $min_value = $total_meses;
+
+/**
+ * Get product final price
+ *
+ * @var     string $price
+ */
+$price = $product->get_price_including_tax();
+
+if ($price <= $min_value){
+    $installments_html = '';
+} elseif ($price > $min_value){
+    $installments_price = $price / $total_meses;
+    $formatted_installments_price = wc_price($price / $total_meses);
+
+    if ($installments_price < $min_value){
+        while ($total_meses > 2 && $installments_price < $min_value){
+            $total_meses--;
+            $installments_price = $price / $total_meses;
+            $formatted_installments_price = wc_price($price / $total_meses);
+        }
+        if ($installments_price >= $min_value){
+            $installments_html = "<div class='box_parcelas_mwp $class'>";
+            $installments_html .= "<p class='price fswp_calc'><span class='parcelas_mwp_list_pre'>".esc_html($total_meses) ."x de </span>" .$formatted_installments_price ." <span class='fswp_installment_suffix'></span></p>";
+            $installments_html .= "</div>";
+        } else{
+            $installments_html = '';
+        }
+    } else{
+        $installments_html = "<div class='box_parcelas_mwp $class'>";
+        $installments_html .= "<p class='price fswp_calc'><span class='parcelas_mwp_list_pre'>".esc_html($total_meses) ."x de </span>" .$formatted_installments_price ." <span class='fswp_installment_suffix'></span></p>";
+        $installments_html .= "</div>";
+    }
+}
+
+echo apply_filters('fswp_installments_calc_output', $installments_html, $total_meses, $formatted_installments_price);
+}
+
+add_shortcode( 'parcelas_mwp', 'parcelamento' );
+
 // WP Query Shortcode to pull woocommerce products dynamically
-
-add_shortcode('woo_featured_image', 'woo_featured_image_loop');
-
 /**
  * Create WooCommerce Featured Image Loop Slider
  */
@@ -564,8 +649,7 @@ function woo_featured_image_loop() {
         'post_type' => 'product',
         'posts_per_page' => 8
     );
-    $post_query = new WP_Query($args);
-?>
+    $post_query = new WP_Query($args);?>
 
     <div id="carrossel-lancamentos" class="posts-carousel">
         <?php
@@ -585,6 +669,9 @@ function woo_featured_image_loop() {
                         <span class="valor">
                             <?php echo $product->get_price_html(); ?>
                         </span>
+                        <span class="parcela">
+                            <?php echo do_shortcode("[parcelas_mwp]"); ?>
+                        </span>
                         <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-comprar">Comprar</a>
                     </div><!--itemLancamento-->
                 </div><!--card-->
@@ -593,18 +680,14 @@ function woo_featured_image_loop() {
         endif;
         wp_reset_postdata();
         return ob_get_clean();
-}
     ?>
-
     </div><!--posts-carousel-->
-
     <?php
+}
+add_shortcode('woo_featured_image', 'woo_featured_image_loop');
 
     // WP Query Shortcode to pull woocommerce products dynamically
-    
-    add_shortcode('woo_loja_image', 'woo_loja_image_loop');
-
-    /**
+     /**
      * Create WooCommerce Featured Image Loop Slider
      */
 
@@ -636,6 +719,9 @@ function woo_featured_image_loop() {
                             <span class="valor">
                                 <?php echo $product->get_price_html(); ?>
                             </span>
+                            <span class="parcela">
+                            <?php echo do_shortcode("[parcelas_mwp]"); ?>
+                        </span>
                             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-comprar">Comprar</a>
                         </div><!--itemLancamento-->
                     </div><!--card-->
@@ -644,7 +730,9 @@ function woo_featured_image_loop() {
             endif;
             wp_reset_postdata();
             return ob_get_clean();
-    }
         ?>
-
         </div><!--loja-carousel-->
+        <?php
+        }
+        add_shortcode('woo_loja_image', 'woo_loja_image_loop');
+        
