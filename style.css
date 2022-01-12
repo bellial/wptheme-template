@@ -1,7 +1,7 @@
 /*
- Theme Name:   Your-Theme
- Theme URI:    https://yoursite.com.br/
- Description:  Your Theme
+ Theme Name:   Chiconi
+ Theme URI:    https://erikachiconisemijoias.com.br/
+ Description:  Erika Chiconi Semijoias
  Author:       Belial Priss
  Author URI:   https://github.com/bellial/
  Template:     twentytwentyone
@@ -9,7 +9,7 @@
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Tags:         light, dark, ecommerce, responsive-layout, accessibility-ready
- Text Domain:  https://yoursite.com.br/
+ Text Domain:  https://erikachiconisemijoias.com.br/
 */
 
 /************************************************************
@@ -302,7 +302,7 @@ header .container {
 }
 .dgwt-wcas-search-submit {
   background-color: transparent !important;
-  background-image: url("https://yoursite.com.br/wp-content/themes/your-theme/assets/images/ico-search.svg");
+  background-image: url("https://erikachiconisemijoias.com.br/wp-content/themes/chiconi/assets/images/ico-search.svg");
   background-size: 25px;
   background-repeat: no-repeat;
   border-radius: 30px;
@@ -713,7 +713,8 @@ header .container {
 .draggable {
   height: 30em;
 }
-.title-produtos {
+.title-produtos,
+.woocommerce-products-header {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
   font-weight: 100;
@@ -1047,7 +1048,7 @@ ul#shipping_method li input {
  .woocommerce-page .product .images {
     width: 50%;
   }
-  .related.products .woocommerce-LoopProduct-link.woocommerce-loop-product__link img{
+  .woocommerce-LoopProduct-link.woocommerce-loop-product__link img{
     margin: 0 auto;
   }
   .attachment-shop_single.size-shop_single.wp-post-image{
@@ -1147,7 +1148,7 @@ font-size: 1.5em;
     margin-top: 2em;
     background-color: transparent;
     letter-spacing: 0.1em;
-	width:6em;
+	width:10em;
 	outline:none;
 }
 
@@ -1160,6 +1161,7 @@ font-size: 1.5em;
     border-radius: 30px;
     margin: 1em auto;
 	margin-top: 0.4em;
+	margin-left:-6em;
     padding: 0 2em;
 	width:9em;
     font-size: inherit !important;
@@ -1397,6 +1399,7 @@ text-decoration: none !important;
   .shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents{
     width: 48em;
   }
+	
 }
 
 
