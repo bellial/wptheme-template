@@ -1,7 +1,7 @@
 /*
- Theme Name:   Chiconi
- Theme URI:    https://erikachiconisemijoias.com.br/
- Description:  Erika Chiconi Semijoias
+ Theme Name:   Your Theme
+ Theme URI:    https://yoursite.com.br/
+ Description:  Your Theme
  Author:       Belial Priss
  Author URI:   https://github.com/bellial/
  Template:     twentytwentyone
@@ -9,7 +9,7 @@
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Tags:         light, dark, ecommerce, responsive-layout, accessibility-ready
- Text Domain:  https://erikachiconisemijoias.com.br/
+ Text Domain:  https://yoursite.com.br/
 */
 
 /************************************************************
@@ -302,7 +302,7 @@ header .container {
 }
 .dgwt-wcas-search-submit {
   background-color: transparent !important;
-  background-image: url("https://erikachiconisemijoias.com.br/wp-content/themes/chiconi/assets/images/ico-search.svg");
+  background-image: url("https://yoursite.com.br/wp-content/themes/your-theme/assets/images/ico-search.svg");
   background-size: 25px;
   background-repeat: no-repeat;
   border-radius: 30px;
