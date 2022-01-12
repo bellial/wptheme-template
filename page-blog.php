@@ -7,6 +7,7 @@
  *
  * @package your-theme
  */
+
 get_header(); ?>
 
 <main>
@@ -28,7 +29,7 @@ get_header(); ?>
 
             $excerpt = get_the_excerpt();
         ?>
-            <div class="col-md-4 blog">
+            <div class="col-md-4">
               <div class="item-postBlog">
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="d-block">
                   <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" class="img-fluid">
@@ -36,7 +37,7 @@ get_header(); ?>
                   <span><?php echo string_limit_words($excerpt, 20); ?> [...]</span>
                 </a>
               </div><!--item-postBlog-->
-            </div><!--blog-->
+            </div><!--col-md-4-->
         <?php
           endwhile;
         endif;
